@@ -48,7 +48,23 @@ class ParkingTest(unittest.TestCase):
         self.assertEquals(sMessage,"Allocated slot number: {}".format(2))
         sMessage = oParking.addCar("a","b")
         self.assertEquals(sMessage,"Sorry, parking lot is full")
-
+        
+    def test_removeCar(self):
+        """
+        test removeCar
+        test if slot number greater than no of slots
+        check for non zero slot
+        """
+        oParking = Parking(0)
+        sMessage = oParking.removeCar(1)
+        self.assertEquals(sMessage,"There is no Slot number {}".format(1))
+        oParking = Parking(2)
+        sMessage = oParking.removeCar(2)
+        self.assertEquals(sMessage,"Slot number {} is free".format(2))
+        oParking.lSlot[0] = 1
+        oParking.lSlot[1] = 1
+        sMessage = oParking.removeCar(2)
+        self.assertEquals(sMessage,"Slot number {} is free".format(2))
 
 if __name__ == '__main__':
     unittest.main()
