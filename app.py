@@ -20,4 +20,6 @@ if __name__ == '__main__':
                 print oParking.removeCar(int(lCommands[1]))
             elif lCommands[0] == "status":
                 print oParking.status()
+            elif lCommands[0] == "registration_numbers_for_cars_with_colour" and iLength == 2:
+                print oParking.carsWithColor(lCommands[1])
         sCommand = getCommand()

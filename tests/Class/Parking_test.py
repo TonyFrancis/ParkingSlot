@@ -41,12 +41,15 @@ class ParkingTest(unittest.TestCase):
         """
         oParking = Parking(2)
         sMessage = oParking.addCar("a","b")
+        self.assertEquals(len(oParking.dCarsColor["b"]),1)
         self.assertEquals(sMessage,"Allocated slot number: {}".format(1))
         self.assertIsInstance(oParking.lSlot[0],Slot)
         sMessage = oParking.addCar("a","b")
+        self.assertEquals(len(oParking.dCarsColor["b"]),2)
         self.assertIsInstance(oParking.lSlot[1],Slot)
         self.assertEquals(sMessage,"Allocated slot number: {}".format(2))
         sMessage = oParking.addCar("a","b")
+        self.assertEquals(len(oParking.dCarsColor["b"]),2)
         self.assertEquals(sMessage,"Sorry, parking lot is full")
 
     def test_removeCar(self):
@@ -61,9 +64,10 @@ class ParkingTest(unittest.TestCase):
         oParking = Parking(2)
         sMessage = oParking.removeCar(2)
         self.assertEquals(sMessage,"Slot number {} is free".format(2))
-        oParking.lSlot[0] = 1
-        oParking.lSlot[1] = 1
+        oParking.addCar("12","white")
+        oParking.addCar("13","black")
         sMessage = oParking.removeCar(2)
+        self.assertEquals(len(oParking.dCarsColor["black"]),0)
         self.assertEquals(sMessage,"Slot number {} is free".format(2))
     def test_status(self):
         """
@@ -78,5 +82,21 @@ class ParkingTest(unittest.TestCase):
         oParking.lSlot[2] = Slot("1234","123")
         sMessage = oParking.status()
         self.assertEquals(sMessage,"Slot No.\tRegistration No\t\tColour\n1\t\t1234\t\t\t123\n3\t\t1234\t\t\t123\n")
+        
+    def test_carsWithColor(self):
+        """
+        test cars with Color
+        """
+        oParking = Parking(2)
+        sMessage = oParking.carsWithColor("white")
+        self.assertEquals("","")
+        oParking.addCar("12","white")
+        oParking.addCar("13","black")
+        sMessage = oParking.carsWithColor("white")
+        self.assertEquals(sMessage,"12")
+        oParking.removeCar(1)
+        sMessage = oParking.carsWithColor("white")
+        self.assertEquals(sMessage,"")
+
 if __name__ == '__main__':
     unittest.main()
