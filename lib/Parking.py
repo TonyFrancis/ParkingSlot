@@ -5,7 +5,7 @@ class Parking(object):
         self.lSlot = [ None ] * iNum
         self.dCarsColor = {}
         self.dSlotCars = {}
-        print "Created a parking lot with {} slots".format(iNum)
+        print "Created a parking lot with {} slots\n".format(iNum)
 
     def __len__(self):
         return len(self.lSlot)
