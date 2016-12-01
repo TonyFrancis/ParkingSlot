@@ -48,7 +48,7 @@ class ParkingTest(unittest.TestCase):
         self.assertEquals(sMessage,"Allocated slot number: {}".format(2))
         sMessage = oParking.addCar("a","b")
         self.assertEquals(sMessage,"Sorry, parking lot is full")
-        
+
     def test_removeCar(self):
         """
         test removeCar
@@ -65,6 +65,18 @@ class ParkingTest(unittest.TestCase):
         oParking.lSlot[1] = 1
         sMessage = oParking.removeCar(2)
         self.assertEquals(sMessage,"Slot number {} is free".format(2))
-
+    def test_status(self):
+        """
+        test status
+        """
+        oParking = Parking(3)
+        sMessage = oParking.status()
+        self.assertEquals(sMessage,"Slot No.\tRegistration No\t\tColour\n")
+        oParking.lSlot[0] = Slot("1234","123")
+        sMessage = oParking.status()
+        self.assertEquals(sMessage,"Slot No.\tRegistration No\t\tColour\n1\t\t1234\t\t\t123\n")
+        oParking.lSlot[2] = Slot("1234","123")
+        sMessage = oParking.status()
+        self.assertEquals(sMessage,"Slot No.\tRegistration No\t\tColour\n1\t\t1234\t\t\t123\n3\t\t1234\t\t\t123\n")
 if __name__ == '__main__':
     unittest.main()

@@ -16,4 +16,6 @@ if __name__ == '__main__':
             print oParking.addCar(lCommands[1],lCommands[2])
         elif lCommands[0] == "leave":
             print oParking.removeCar(int(lCommands[1]))
+        elif lCommands[0] == "status":
+            print oParking.status()
         sCommand = getCommand()

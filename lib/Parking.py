@@ -36,3 +36,13 @@ class Parking(object):
                 self.lSlot[iSlot - 1 ] = None
             return "Slot number {} is free".format(iSlot)
         return "There is no Slot number {}".format(iSlot)
+
+    def status(self):
+        """
+        Status of the Parking Slot
+        """
+        sStatus = "Slot No.\tRegistration No\t\tColour\n"
+        for index,value in enumerate(self.lSlot):
+            if value:
+                sStatus += str(index + 1) + "\t\t"+ value.sRegisration + "\t\t\t" +value.sColor +"\n"
+        return sStatus
