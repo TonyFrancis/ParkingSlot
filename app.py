@@ -22,4 +22,6 @@ if __name__ == '__main__':
                 print oParking.status()
             elif lCommands[0] == "registration_numbers_for_cars_with_colour" and iLength == 2:
                 print oParking.carsWithColor(lCommands[1])
+            elif lCommands[0] == "slot_number_for_registration_number" and iLength == 2:
+                print oParking.slotNumber(lCommands[1])
         sCommand = getCommand()

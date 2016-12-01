@@ -67,7 +67,7 @@ class ParkingTest(unittest.TestCase):
         oParking.addCar("12","white")
         oParking.addCar("13","black")
         sMessage = oParking.removeCar(2)
-        self.assertEquals(len(oParking.dCarsColor["black"]),0)
+        self.assertFalse("black" in oParking.dCarsColor)
         self.assertEquals(sMessage,"Slot number {} is free".format(2))
     def test_status(self):
         """
@@ -100,6 +100,26 @@ class ParkingTest(unittest.TestCase):
         oParking.removeCar(1)
         sMessage = oParking.carsWithColor("white")
         self.assertEquals(sMessage,"")
+        
+    def test_slotNumber(self):
+        """
+        test slot Number of car
+        check output after insert and delete to be excepted
+        """
+        oParking = Parking(2)
+        sMessage = oParking.carsWithColor("white")
+        self.assertEquals("","")
+        oParking.addCar("12","white")
+        sMessage = oParking.slotNumber("12")
+        self.assertEquals(sMessage,"1")
+        oParking.addCar("13","black")
+        sMessage = oParking.slotNumber("12")
+        self.assertEquals(sMessage,"1")
+        oParking.removeCar(1)
+        sMessage = oParking.slotNumber("12")
+        self.assertEquals(sMessage,"None Found")
+        sMessage = oParking.slotNumber("13")
+        self.assertEquals(sMessage,"2")
 
 if __name__ == '__main__':
     unittest.main()
