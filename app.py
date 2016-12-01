@@ -12,4 +12,7 @@ if __name__ == '__main__':
         lCommands = sCommand.split()
         if lCommands[0] == "create_parking_lot":
             oParking = Parking(int(lCommands[1]))
+        elif lCommands[0] == "park":
+            sMessage = oParking.addCar(lCommands[1],lCommands[2])
+            print sMessage
         sCommand = getCommand()

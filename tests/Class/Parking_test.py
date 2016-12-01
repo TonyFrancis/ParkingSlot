@@ -7,8 +7,8 @@ class ParkingTest(unittest.TestCase):
         """
         oParking = Parking(1)
         self.assertEquals(len(oParking),1)
-        for oSlot in oParking.lSlot:
-            self.assertIsNone(oSlot)
+        for oLot in oParking.lLot:
+            self.assertIsNone(oLot)
 
 
 if __name__ == '__main__':
