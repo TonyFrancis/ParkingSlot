@@ -1,5 +1,5 @@
 import sys
-
+from lib.Parking import Parking
 if __name__ == '__main__':
     bInteractive = bool(len(sys.argv) > 1)
     if bInteractive:
@@ -9,5 +9,7 @@ if __name__ == '__main__':
         getCommand = raw_input
     sCommand = getCommand()
     while sCommand:
-        print sCommand
+        lCommands = sCommand.split()
+        if lCommands[0] == "create_parking_lot":
+            oParking = Parking(int(lCommands[1]))
         sCommand = getCommand()
