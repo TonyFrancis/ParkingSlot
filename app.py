@@ -13,6 +13,7 @@ if __name__ == '__main__':
         if lCommands[0] == "create_parking_lot":
             oParking = Parking(int(lCommands[1]))
         elif lCommands[0] == "park":
-            sMessage = oParking.addCar(lCommands[1],lCommands[2])
-            print sMessage
+            print oParking.addCar(lCommands[1],lCommands[2])
+        elif lCommands[0] == "leave":
+            print oParking.removeCar(int(lCommands[1]))
         sCommand = getCommand()

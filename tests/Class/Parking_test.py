@@ -1,6 +1,6 @@
 import unittest
 from lib.Parking import Parking
-from lib.Lot import Lot
+from lib.Slot import Slot
 class ParkingTest(unittest.TestCase):
     def test_init(self):
         """
@@ -11,28 +11,28 @@ class ParkingTest(unittest.TestCase):
         """
         oParking = Parking(1)
         self.assertEquals(len(oParking),1)
-        for oLot in oParking.lLot:
-            self.assertIsNone(oLot)
+        for oSlot in oParking.lSlot:
+            self.assertIsNone(oSlot)
         oParking = Parking(0)
         self.assertEquals(len(oParking),0)
         oParking = Parking(-1)
         self.assertEquals(len(oParking),0)
 
 
-    def test_lotFree(self):
+    def test_isSlotFree(self):
         """
-        test lotFree method
+        test isSlotFree method
         1. Check lot free for non zero postive number
         2. Check for zero
         """
         oParking = Parking(2)
-        self.assertEquals(oParking.lotFree(),0)
-        oParking.lLot[0] = 1
-        self.assertEquals(oParking.lotFree(),1)
-        oParking.lLot[1] = 1
-        self.assertEquals(oParking.lotFree(),-1)
+        self.assertEquals(oParking.isSlotFree(),0)
+        oParking.lSlot[0] = 1
+        self.assertEquals(oParking.isSlotFree(),1)
+        oParking.lSlot[1] = 1
+        self.assertEquals(oParking.isSlotFree(),-1)
         oParking = Parking(0)
-        self.assertEquals(oParking.lotFree(),-1)
+        self.assertEquals(oParking.isSlotFree(),-1)
 
     def test_addCar(self):
         """
@@ -42,9 +42,9 @@ class ParkingTest(unittest.TestCase):
         oParking = Parking(2)
         sMessage = oParking.addCar("a","b")
         self.assertEquals(sMessage,"Allocated slot number: {}".format(1))
-        self.assertIsInstance(oParking.lLot[0],Lot)
+        self.assertIsInstance(oParking.lSlot[0],Slot)
         sMessage = oParking.addCar("a","b")
-        self.assertIsInstance(oParking.lLot[1],Lot)
+        self.assertIsInstance(oParking.lSlot[1],Slot)
         self.assertEquals(sMessage,"Allocated slot number: {}".format(2))
         sMessage = oParking.addCar("a","b")
         self.assertEquals(sMessage,"Sorry, parking lot is full")

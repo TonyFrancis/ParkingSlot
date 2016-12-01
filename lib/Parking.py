@@ -1,18 +1,18 @@
-from Lot import Lot
+from Slot import Slot
 class Parking(object):
 
     def __init__(self,iNum):
-        self.lLot = [ None ] * iNum
+        self.lSlot = [ None ] * iNum
         print "Created a parking lot with {} slots".format(iNum)
 
     def __len__(self):
-        return len(self.lLot)
+        return len(self.lSlot)
 
-    def lotFree(self):
+    def isSlotFree(self):
         """
         Check if there is lot free or not
         """
-        for index,value in enumerate(self.lLot):
+        for index,value in enumerate(self.lSlot):
             if not value:
                 return index
         return -1
@@ -21,8 +21,18 @@ class Parking(object):
         """
         Add car to the lot if free lot is present
         """
-        index = self.lotFree()
+        index = self.isSlotFree()
         if index != -1:
-            self.lLot[index] = Lot(sRegisration,sColor)
+            self.lSlot[index] = Slot(sRegisration,sColor)
             return "Allocated slot number: {}".format(index + 1)
         return "Sorry, parking lot is full"
+
+    def removeCar(self,iSlot):
+        """
+        Remove Car from Lot
+        """
+        if len(self.lSlot) >= iSlot:
+            if self.lSlot[iSlot - 1]:
+                self.lSlot[iSlot - 1 ] = None
+            return "Slot number {} is free".format(iSlot)
+        return "There is no Slot number {}".format(iSlot)
