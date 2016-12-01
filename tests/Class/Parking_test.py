@@ -82,15 +82,18 @@ class ParkingTest(unittest.TestCase):
         oParking.lSlot[2] = Slot("1234","123")
         sMessage = oParking.status()
         self.assertEquals(sMessage,"Slot No.\tRegistration No\t\tColour\n1\t\t1234\t\t\t123\n3\t\t1234\t\t\t123\n")
-        
+
     def test_carsWithColor(self):
         """
         test cars with Color
+        check output after insert and delete to be excepted
         """
         oParking = Parking(2)
         sMessage = oParking.carsWithColor("white")
         self.assertEquals("","")
         oParking.addCar("12","white")
+        sMessage = oParking.carsWithColor("white")
+        self.assertEquals(sMessage,"12")
         oParking.addCar("13","black")
         sMessage = oParking.carsWithColor("white")
         self.assertEquals(sMessage,"12")
