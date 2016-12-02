@@ -15,7 +15,8 @@ pip install Nose
 test
 ```
 $cd /Path/to/ParkingSlot
-$nosetests```
+$nosetests
+```
 
 execute
 ```
