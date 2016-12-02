@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import sys
 from lib.Parking import Parking
 if __name__ == '__main__':
